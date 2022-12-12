@@ -1,6 +1,16 @@
 {
   "expo": {
-    "scheme": "acme",
-    "web": { "bundler": "metro" }
+    "scheme": "soci",
+    "web": {
+      "bundler": "metro"
+    },
+    "extra": {
+      "eas": {
+        "projectId": ""
+      }
+    },
+    "ios": {
+      "bundleIdentifier": "com.foysalit.soci"
+    }
   }
 }
