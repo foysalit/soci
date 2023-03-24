@@ -1,3 +1,4 @@
+import { useSearchParams } from "expo-router";
 import { StyleSheet, Text, View } from "react-native";
 import { getCommentsForPost } from "../../../data";
 
@@ -19,8 +20,9 @@ const styles = StyleSheet.create({
   },
 });
 
-export default function Comments({ route }) {
-  const postId = parseInt(route.params.id);
+export default function Comments() {
+  const { id } = useSearchParams();
+  const postId = parseInt(id as string);
   const comments = getCommentsForPost(postId);
   return (
     <View>
@@ -30,7 +32,9 @@ export default function Comments({ route }) {
           key={`post_${postId}_comment_${comment.id}`}
           style={styles.commentWrapper}
         >
-          <Text style={styles.commentUserName}>{comment.user.name} commented</Text>
+          <Text style={styles.commentUserName}>
+            {comment.user.name} commented
+          </Text>
           <Text>{comment.content}</Text>
         </View>
       ))}

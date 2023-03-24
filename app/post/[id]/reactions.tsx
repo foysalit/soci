@@ -1,3 +1,4 @@
+import { useSearchParams } from "expo-router";
 import { StyleSheet, Text, View } from "react-native";
 import { getReactionsForPost } from "../../../data";
 
@@ -21,8 +22,9 @@ const getReactionEmoji = (reactionType: string) => {
   }
 };
 
-export default function Reactions({ route }) {
-  const postId = parseInt(route.params.id);
+export default function Reactions() {
+  const { id } = useSearchParams();
+  const postId = parseInt(id as string);
   const reactions = getReactionsForPost(postId);
   return (
     <View>
