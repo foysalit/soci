@@ -1,5 +1,5 @@
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
-import { useLink, Link, Stack } from "expo-router";
+import { Link, Stack, useRouter } from "expo-router";
 import { Posts } from "../data";
 
 const styles = StyleSheet.create({
@@ -21,14 +21,14 @@ const styles = StyleSheet.create({
     paddingVertical: 4,
   },
   postActionWrapper: {
-      flexDirection: "row",
-      justifyContent: "space-around",
-      paddingVertical: 8,
-  }
+    flexDirection: "row",
+    justifyContent: "space-around",
+    paddingVertical: 8,
+  },
 });
 
 export default function Home() {
-  const link = useLink();
+  const link = useRouter();
   return (
     <View style={{ flex: 1 }}>
       <Stack.Screen options={{ title: "Home" }} />
@@ -42,8 +42,12 @@ export default function Home() {
           <Text style={styles.postContent}>{post.content}</Text>
 
           <View style={styles.postActionWrapper}>
-            <Link href={`/post/${post.id}/reactions`}>{post.reactions.length} Reactions</Link>
-            <Link href={`/post/${post.id}/comments`}>{post.comments.length} Comments</Link>
+            <Link href={`/post/${post.id}/reactions`}>
+              {post.reactions.length} Reactions
+            </Link>
+            <Link href={`/post/${post.id}/comments`}>
+              {post.comments.length} Comments
+            </Link>
           </View>
         </TouchableOpacity>
       ))}

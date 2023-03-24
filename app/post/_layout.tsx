@@ -1,7 +1,8 @@
-import { Tabs } from "expo-router";
+import { Tabs, usePathname, useSearchParams } from "expo-router";
 
-export default function Layout({ route }) {
-  const postId = parseInt(route.params.id);
+export default function Layout() {
+  const { id } = useSearchParams();
+  const postId = parseInt(id as string);
   return (
     <Tabs
       screenOptions={{ headerShown: false, tabBarLabelPosition: "beside-icon" }}
